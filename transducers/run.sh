@@ -41,6 +41,17 @@ fstunion lemma2verbif.fst temp.fst > lemma2verb.fst
 rm temp.fst
 fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait lemma2verb.fst | dot -Tpdf  > lemma2verb.pdf
 
+# Compila e gera a versão gráfica do transdutor que gera tudo
+fstunion lemma2noun.fst lemma2adverb.fst > temp.fst
+fstunion lemma2verb.fst temp.fst > lemma2word.fst
+rm temp.fst
+fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait lemma2word.fst | dot -Tpdf  > lemma2word.pdf
+
+fstinvert lemma2noun.fst > temp.fst
+fstreverse temp.fst > nouninverted.fst
+fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait nouninverted.fst | dot -Tpdf  > nouninverted.pdf
+
+
 ################### Testa os tradutores ################
 #
 # Compila e gera a versão gráfica do transdutor que gera o nome na forma correta
@@ -63,6 +74,13 @@ fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait lemma2verb.fst | dot 
 #fstcompose <palavra>.fst verbif.fst > <palavra-trad>.fst
 #fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait <palavra-trad>.fst | dot -Tpdf > <palavra-trad>.pdf
 
+# Compila e gera a versão gráfica do transdutor que gera o verbo na forma correta
+#fstcompose <palavra>.fst verb.fst > <palavra-trad>.fst
+#fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait <palavra-trad>.fst | dot -Tpdf > <palavra-trad>.pdf
+
+# Compila e gera a versão gráfica do transdutor que gera a palavra na forma correta
+#fstcompose <palavra>.fst lemma2word.fst > <palavra-trad>.fst
+#fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait <palavra-trad>.fst | dot -Tpdf > <palavra-trad>.pdf
 
 
 # Gera a versão textual das saídas
