@@ -1,23 +1,23 @@
 #!/bin/bash
 
 
-################### letras ################ QUAL E A PASTA PARA GUARDAR OS EXEMPLOS.FST ?????
-#
-# Compila e gera a versão gráfica do transdutor que tem "<palavra>"
-#fstcompile --isymbols=syms.txt --osymbols=syms.txt  test1.txt | fstarcsort > test1.fst
-#fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait test1.fst | dot -Tpdf  > FINALexamples/test1.pdf
+################### Testes ################
 
-# Compila e gera a versão gráfica do transdutor que tem "<palavra>"
-#fstcompile --isymbols=syms.txt --osymbols=syms.txt  test2.txt | fstarcsort > test2.fst
-#fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait test2.fst | dot -Tpdf  > FINALexamples/test2.pdf
+# Compila e gera a versão gráfica do transdutor que tem o nome "porteiro" na forma porteiro+N+fp
+fstcompile --isymbols=syms.txt --osymbols=syms.txt  test1.txt | fstarcsort > test1.fst
+fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait test1.fst | dot -Tpdf  > FINALexamples/test1.pdf
 
-# Compila e gera a versão gráfica do transdutor que tem "<palavra>"
-#fstcompile --isymbols=syms.txt --osymbols=syms.txt  test3.txt | fstarcsort > test3.fst
-#fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait test3.fst | dot -Tpdf  > FINALexamples/test3.pdf
+# Compila e gera a versão gráfica do transdutor que tem o adverbio "lentamente" na forma lentamente+ADV
+fstcompile --isymbols=syms.txt --osymbols=syms.txt  test2.txt | fstarcsort > test2.fst
+fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait test2.fst | dot -Tpdf  > FINALexamples/test2.pdf
+
+# Compila e gera a versão gráfica do transdutor que tem o verbo "plantar" na forma "plantas"
+fstcompile --isymbols=syms.txt --osymbols=syms.txt  test3.txt | fstarcsort > test3.fst
+fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait test3.fst | dot -Tpdf  > FINALexamples/test3.pdf
 
 
-################### Tradutores ################
-#
+################### Transdutores ################
+
 # Compila e gera a versão gráfica do transdutor que gera nomes
 fstcompile --isymbols=syms.txt --osymbols=syms.txt lemma2noun.txt | fstarcsort > FINALtransducers/lemma2noun.fst
 fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait FINALtransducers/lemma2noun.fst | dot -Tpdf  > FINALpdf/lemma2noun.pdf
@@ -54,25 +54,38 @@ fstinvert FINALtransducers/lemma2word.fst > FINALtransducers/word2lemma.fst
 fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait FINALtransducers/word2lemma.fst | dot -Tpdf  >  FINALpdf/word2lemma.pdf
 
 
-################### Testa os tradutores - CORRIGIR!!!!!! ################
+################### Testes aos transdutores ################
 
-# Compila e gera a versão gráfica do transdutor que gera o verbo na forma correta
-#fstcompose <palavra>.fst verb.fst > <palavra-trad>.fst
-#fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait <palavra-trad>.fst | dot -Tpdf > <palavra-trad>.pdf
+### test1 ###Compila e gera a versão gráfica dos transdutores para o teste 1
 
-#fstcompose <palavra>.fst verb.fst > <palavra-trad>.fst
-#fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait <palavra-trad>.fst | dot -Tpdf > <palavra-trad>.pdf
+fstcompose test1.fst FINALtransducers/lemma2verb.fst > test1_lemma2verb.fst
+fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait test1_lemma2verb.fst | dot -Tpdf > FINALexamples/test1_lemma2verb.pdf
 
-#fstcompose <palavra>.fst verb.fst > <palavra-trad>.fst
-#fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait <palavra-trad>.fst | dot -Tpdf > <palavra-trad>.pdf
+fstcompose test1.fst FINALtransducers/lemma2word.fst > test1_lemma2word.fst
+fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait test1_lemma2word.fst | dot -Tpdf > FINALexamples/test1_lemma2word.pdf
 
-#
+fstcompose test1.fst FINALtransducers/word2lemma.fst > test1_word2lemma.fst
+fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait test1_word2lemma.fst | dot -Tpdf > FINALexamples/test1_word2lemma.pdf
 
-# Compila e gera a versão gráfica do transdutor que gera a palavra na forma correta
-#fstcompose <palavra>.fst lemma2word.fst > <palavra-trad>.fst
-#fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait <palavra-trad>.fst | dot -Tpdf > <palavra-trad>.pdf
+### test2 ###Compila e gera a versão gráfica dos transdutores para o teste 2
+
+fstcompose test2.fst FINALtransducers/lemma2verb.fst > test2_lemma2verb.fst
+fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait test2_lemma2verb.fst | dot -Tpdf > FINALexamples/test2_lemma2verb.pdf
+
+fstcompose test2.fst FINALtransducers/lemma2word.fst > test2_lemma2word.fst
+fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait test2_lemma2word.fst | dot -Tpdf > FINALexamples/test2_lemma2word.pdf
+
+fstcompose test2.fst FINALtransducers/word2lemma.fst > test2_word2lemma.fst
+fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait test2_word2lemma.fst | dot -Tpdf > FINALexamples/test2_word2lemma.pdf
 
 
+### test3 ###Compila e gera a versão gráfica dos transdutores para o teste 3
 
-# Gera a versão textual das saídas
-##fstproject --project_output batata.fst | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=letras.sym
+fstcompose test3.fst FINALtransducers/lemma2verb.fst > test3_lemma2verb.fst
+fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait test3_lemma2verb.fst | dot -Tpdf > FINALexamples/test3_lemma2verb.pdf
+
+fstcompose test3.fst FINALtransducers/lemma2word.fst > test3_lemma2word.fst
+fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait test3_lemma2word.fst | dot -Tpdf > FINALexamples/test3_lemma2word.pdf
+
+fstcompose test3.fst FINALtransducers/word2lemma.fst > test3_word2lemma.fst
+fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait test3_word2lemma.fst | dot -Tpdf > FINALexamples/test3_word2lemma.pdf

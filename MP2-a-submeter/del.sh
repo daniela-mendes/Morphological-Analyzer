@@ -1,1 +1,0 @@
-rm  FINALtransducers/*.fst  FINALpdf/*.pdf
