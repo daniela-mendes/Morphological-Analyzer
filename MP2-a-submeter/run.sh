@@ -11,7 +11,7 @@ fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait test1.fst | dot -T
 fstcompile --isymbols=syms.txt --osymbols=syms.txt  test2.txt | fstarcsort > test2.fst
 fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait test2.fst | dot -Tpdf  > FINALexamples/test2.pdf
 
-# Compila e gera a versão gráfica do transdutor que tem o verbo "plantar" na forma "plantas"
+# Compila e gera a versão gráfica do transdutor que tem o verbo "matar" na forma "matas"
 fstcompile --isymbols=syms.txt --osymbols=syms.txt  test3.txt | fstarcsort > test3.fst
 fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait test3.fst | dot -Tpdf  > FINALexamples/test3.pdf
 
