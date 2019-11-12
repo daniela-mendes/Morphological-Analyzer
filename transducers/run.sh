@@ -16,25 +16,30 @@
 ################### Tradutores ################
 #
 # Compila e gera a versão gráfica do transdutor que gera nomes
-fstcompile --isymbols=syms.txt --osymbols=syms.txt lemma2noun.txt | fstarcsort > noun.fst
-fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait noun.fst | dot -Tpdf  > noun.pdf
+fstcompile --isymbols=syms.txt --osymbols=syms.txt lemma2noun.txt | fstarcsort > lemma2noun.fst
+fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait lemma2noun.fst | dot -Tpdf  > lemma2noun.pdf
 
 # Compila e gera a versão gráfica do transdutor que gera adverbios
-fstcompile --isymbols=syms.txt --osymbols=syms.txt lemma2adverb.txt | fstarcsort > adv.fst
-fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait adv.fst | dot -Tpdf  > adv.pdf
+fstcompile --isymbols=syms.txt --osymbols=syms.txt lemma2adverb.txt | fstarcsort > lemma2adverb.fst
+fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait lemma2adverb.fst | dot -Tpdf  > lemma2adverb.pdf
 
 # Compila e gera a versão gráfica do transdutor que gera verbos no presente
-fstcompile --isymbols=syms.txt --osymbols=syms.txt lemma2verbip.txt | fstarcsort > verbip.fst
-fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait verbip.fst | dot -Tpdf  > verbip.pdf
+fstcompile --isymbols=syms.txt --osymbols=syms.txt lemma2verbip.txt | fstarcsort > lemma2verbip.fst
+fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait lemma2verbip.fst | dot -Tpdf  > lemma2verbip.pdf
 
 # Compila e gera a versão gráfica do transdutor que gera verbos no preterito perfeito
-fstcompile --isymbols=syms.txt --osymbols=syms.txt lemma2verbis.txt | fstarcsort > verbis.fst
-fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait verbis.fst | dot -Tpdf  > verbis.pdf
+fstcompile --isymbols=syms.txt --osymbols=syms.txt lemma2verbis.txt | fstarcsort > lemma2verbis.fst
+fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait lemma2verbis.fst | dot -Tpdf  > lemma2verbis.pdf
 
 # Compila e gera a versão gráfica do transdutor que gera verbos no futuro
-fstcompile --isymbols=syms.txt --osymbols=syms.txt lemma2verbif.txt | fstarcsort > verbif.fst
-fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait verbif.fst | dot -Tpdf  > verbif.pdf
+fstcompile --isymbols=syms.txt --osymbols=syms.txt lemma2verbif.txt | fstarcsort > lemma2verbif.fst
+fstdraw    --isymbols=syms.txt --osymbols=syms.txt --portrait lemma2verbif.fst | dot -Tpdf  > lemma2verbif.pdf
 
+# Compila e gera a versão gráfica do transdutor que gera todos os verbos
+fstunion lemma2verbip.fst lemma2verbis.fst > temp.fst
+fstunion lemma2verbif.fst temp.fst > lemma2verb.fst
+rm temp.fst
+fstdraw --isymbols=syms.txt --osymbols=syms.txt --portrait lemma2verb.fst | dot -Tpdf  > lemma2verb.pdf
 
 ################### Testa os tradutores ################
 #
